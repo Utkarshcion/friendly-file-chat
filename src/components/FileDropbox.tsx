@@ -67,9 +67,11 @@ const FileDropbox = () => {
         onDrop={handleDrop}
         className={cn(
           "relative border-2 border-dashed rounded-lg p-8 transition-all duration-200 ease-in-out cursor-pointer",
-          "hover:border-primary/50 hover:bg-muted/50",
-          isDragging ? "border-primary bg-muted" : "border-muted",
-          "flex flex-col items-center justify-center gap-4"
+          "bg-gradient-to-br from-[#E5DEFF]/30 to-[#FFDEE2]/30 backdrop-blur-sm",
+          "hover:from-[#E5DEFF]/50 hover:to-[#FFDEE2]/50",
+          isDragging ? "border-[#9b87f5] shadow-lg shadow-[#9b87f5]/20" : "border-[#9b87f5]/50",
+          "flex flex-col items-center justify-center gap-4",
+          "animate-pulse-slow"
         )}
       >
         <input
@@ -86,21 +88,21 @@ const FileDropbox = () => {
               <span className="text-sm font-medium">Uploading...</span>
               <span className="text-sm font-medium">{uploadProgress}%</span>
             </div>
-            <div className="w-full bg-muted rounded-full h-2.5">
+            <div className="w-full bg-[#E5DEFF] rounded-full h-2.5">
               <div
-                className="bg-primary h-2.5 rounded-full transition-all duration-300"
+                className="bg-[#9b87f5] h-2.5 rounded-full transition-all duration-300"
                 style={{ width: `${uploadProgress}%` }}
               ></div>
             </div>
           </div>
         ) : (
           <>
-            <div className="rounded-full p-3 bg-muted">
-              <Upload className="w-6 h-6 text-muted-foreground" />
+            <div className="rounded-full p-3 bg-[#9b87f5]/10">
+              <Upload className="w-6 h-6 text-[#9b87f5]" />
             </div>
             <div className="text-center">
-              <p className="text-lg font-medium">Drop your files here</p>
-              <p className="text-sm text-muted-foreground">or click to browse</p>
+              <p className="text-lg font-medium text-[#7E69AB]">Drop your files here</p>
+              <p className="text-sm text-[#6E59A5]">or click to browse</p>
             </div>
           </>
         )}
