@@ -1,7 +1,9 @@
 import FileDropbox from "@/components/FileDropbox";
 import { Card } from "@/components/ui/card";
-import { Clock, FileCheck, FileText } from "lucide-react";
+import { FileCheck, FileText } from "lucide-react";
 import { ScrollArea } from "@/components/ui/scroll-area";
+import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
+import { Badge } from "@/components/ui/badge";
 
 const Index = () => {
   return (
@@ -23,16 +25,26 @@ const Index = () => {
             <h2 className="text-2xl font-semibold text-[#7E69AB]">File Upload</h2>
             <FileDropbox />
             
-            {/* Document Viewer */}
+            {/* Loan Agreement Summary */}
             <Card className="p-4 bg-background/70 backdrop-blur-sm mt-4">
               <h3 className="text-lg font-semibold mb-3 flex items-center gap-2">
                 <FileText className="text-[#9b87f5]" />
-                Document Viewer
+                Loan Agreement Summary
               </h3>
               <ScrollArea className="h-[300px] w-full rounded-md border p-4">
-                <div className="text-sm">
-                  {/* Document content will be displayed here */}
-                  <p className="text-muted-foreground">Upload a document to view its contents</p>
+                <div className="space-y-3">
+                  <div className="p-2 bg-background/50 rounded">
+                    <h4 className="font-medium mb-1">Key Terms</h4>
+                    <p className="text-sm text-muted-foreground">Upload a loan agreement to view its summary</p>
+                  </div>
+                  <div className="p-2 bg-background/50 rounded">
+                    <h4 className="font-medium mb-1">Important Dates</h4>
+                    <p className="text-sm text-muted-foreground">No dates found</p>
+                  </div>
+                  <div className="p-2 bg-background/50 rounded">
+                    <h4 className="font-medium mb-1">Financial Terms</h4>
+                    <p className="text-sm text-muted-foreground">No financial terms found</p>
+                  </div>
                 </div>
               </ScrollArea>
             </Card>
@@ -79,44 +91,57 @@ const Index = () => {
             <Card className="p-4 bg-background/70 backdrop-blur-sm">
               <h3 className="text-lg font-semibold mb-3 flex items-center gap-2">
                 <FileCheck className="text-[#9b87f5]" />
-                Loan Queue
+                Loan Agreements
               </h3>
               <div className="space-y-2">
-                <div className="flex justify-between items-center p-2 bg-background/50 rounded">
-                  <span>Pending Review</span>
-                  <span className="font-semibold">12</span>
-                </div>
-                <div className="flex justify-between items-center p-2 bg-background/50 rounded">
-                  <span>In Progress</span>
-                  <span className="font-semibold">5</span>
-                </div>
-                <div className="flex justify-between items-center p-2 bg-background/50 rounded">
-                  <span>Completed</span>
-                  <span className="font-semibold">28</span>
-                </div>
+                {[
+                  { id: 1, name: "Loan #1234", status: "Pending Review" },
+                  { id: 2, name: "Loan #5678", status: "In Progress" },
+                  { id: 3, name: "Loan #9012", status: "Completed" },
+                ].map((loan) => (
+                  <Dialog key={loan.id}>
+                    <DialogTrigger asChild>
+                      <div className="flex justify-between items-center p-3 bg-background/50 rounded-lg hover:bg-background/80 cursor-pointer group transition-colors">
+                        <span className="font-medium">{loan.name}</span>
+                        <Badge 
+                          variant="secondary"
+                          className="group-hover:bg-primary/20"
+                        >
+                          {loan.status}
+                        </Badge>
+                      </div>
+                    </DialogTrigger>
+                    <DialogContent className="max-w-4xl max-h-[80vh] overflow-y-auto">
+                      <div className="space-y-4">
+                        <h2 className="text-2xl font-semibold">{loan.name}</h2>
+                        {/* Document Viewer */}
+                        <ScrollArea className="h-[60vh] w-full rounded-md border p-4">
+                          <div className="text-sm space-y-4">
+                            <h3 className="text-lg font-semibold">Loan Agreement Document</h3>
+                            <p className="text-muted-foreground">
+                              This is where the loan agreement document content will be displayed.
+                              The content can include terms, conditions, payment schedules, and other
+                              relevant information.
+                            </p>
+                          </div>
+                        </ScrollArea>
+                      </div>
+                    </DialogContent>
+                  </Dialog>
+                ))}
               </div>
             </Card>
 
-            {/* Summary Section */}
+            {/* Document Viewer */}
             <Card className="p-4 bg-background/70 backdrop-blur-sm">
               <h3 className="text-lg font-semibold mb-3 flex items-center gap-2">
                 <FileText className="text-[#9b87f5]" />
-                Loan Agreement Summary
+                Document Viewer
               </h3>
               <ScrollArea className="h-[300px] w-full rounded-md border p-4">
-                <div className="space-y-3">
-                  <div className="p-2 bg-background/50 rounded">
-                    <h4 className="font-medium mb-1">Key Terms</h4>
-                    <p className="text-sm text-muted-foreground">Upload a loan agreement to view its summary</p>
-                  </div>
-                  <div className="p-2 bg-background/50 rounded">
-                    <h4 className="font-medium mb-1">Important Dates</h4>
-                    <p className="text-sm text-muted-foreground">No dates found</p>
-                  </div>
-                  <div className="p-2 bg-background/50 rounded">
-                    <h4 className="font-medium mb-1">Financial Terms</h4>
-                    <p className="text-sm text-muted-foreground">No financial terms found</p>
-                  </div>
+                <div className="text-sm">
+                  {/* Document content will be displayed here */}
+                  <p className="text-muted-foreground">Upload a document to view its contents</p>
                 </div>
               </ScrollArea>
             </Card>
