@@ -1,6 +1,7 @@
 import FileDropbox from "@/components/FileDropbox";
 import { Card } from "@/components/ui/card";
-import { Clock, FileCheck, FileSearch } from "lucide-react";
+import { Clock, FileCheck, FileText } from "lucide-react";
+import { ScrollArea } from "@/components/ui/scroll-area";
 
 const Index = () => {
   return (
@@ -21,6 +22,20 @@ const Index = () => {
           <div className="space-y-4">
             <h2 className="text-2xl font-semibold text-[#7E69AB]">File Upload</h2>
             <FileDropbox />
+            
+            {/* Document Viewer */}
+            <Card className="p-4 bg-background/70 backdrop-blur-sm mt-4">
+              <h3 className="text-lg font-semibold mb-3 flex items-center gap-2">
+                <FileText className="text-[#9b87f5]" />
+                Document Viewer
+              </h3>
+              <ScrollArea className="h-[300px] w-full rounded-md border p-4">
+                <div className="text-sm">
+                  {/* Document content will be displayed here */}
+                  <p className="text-muted-foreground">Upload a document to view its contents</p>
+                </div>
+              </ScrollArea>
+            </Card>
           </div>
 
           {/* Middle Column - Chat Area */}
@@ -82,41 +97,28 @@ const Index = () => {
               </div>
             </Card>
 
-            {/* Recent Activity Widget */}
+            {/* Summary Section */}
             <Card className="p-4 bg-background/70 backdrop-blur-sm">
               <h3 className="text-lg font-semibold mb-3 flex items-center gap-2">
-                <Clock className="text-[#9b87f5]" />
-                Recent Activity
+                <FileText className="text-[#9b87f5]" />
+                Loan Agreement Summary
               </h3>
-              <div className="space-y-2">
-                <div className="text-sm">
-                  <p className="font-medium">Loan #1234 Updated</p>
-                  <p className="text-muted-foreground">2 minutes ago</p>
+              <ScrollArea className="h-[300px] w-full rounded-md border p-4">
+                <div className="space-y-3">
+                  <div className="p-2 bg-background/50 rounded">
+                    <h4 className="font-medium mb-1">Key Terms</h4>
+                    <p className="text-sm text-muted-foreground">Upload a loan agreement to view its summary</p>
+                  </div>
+                  <div className="p-2 bg-background/50 rounded">
+                    <h4 className="font-medium mb-1">Important Dates</h4>
+                    <p className="text-sm text-muted-foreground">No dates found</p>
+                  </div>
+                  <div className="p-2 bg-background/50 rounded">
+                    <h4 className="font-medium mb-1">Financial Terms</h4>
+                    <p className="text-sm text-muted-foreground">No financial terms found</p>
+                  </div>
                 </div>
-                <div className="text-sm">
-                  <p className="font-medium">New Document Uploaded</p>
-                  <p className="text-muted-foreground">15 minutes ago</p>
-                </div>
-                <div className="text-sm">
-                  <p className="font-medium">Review Completed</p>
-                  <p className="text-muted-foreground">1 hour ago</p>
-                </div>
-              </div>
-            </Card>
-
-            {/* Search Widget */}
-            <Card className="p-4 bg-background/70 backdrop-blur-sm">
-              <h3 className="text-lg font-semibold mb-3 flex items-center gap-2">
-                <FileSearch className="text-[#9b87f5]" />
-                Quick Search
-              </h3>
-              <div className="relative">
-                <input
-                  type="search"
-                  placeholder="Search loans..."
-                  className="w-full p-2 pr-8 rounded border border-input bg-background/50"
-                />
-              </div>
+              </ScrollArea>
             </Card>
           </div>
         </div>
