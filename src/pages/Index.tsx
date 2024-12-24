@@ -1,6 +1,6 @@
 import FileDropbox from "@/components/FileDropbox";
 import { Card } from "@/components/ui/card";
-import { FileCheck, FileText } from "lucide-react";
+import { FileCheck, FileText, Shield, Database, ChartBar } from "lucide-react";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
 import { Badge } from "@/components/ui/badge";
@@ -15,20 +15,24 @@ const Index = () => {
       </div>
 
       <div className="max-w-[1800px] mx-auto relative z-10">
-        <h1 className="text-4xl font-bold text-center mb-8 bg-clip-text text-transparent bg-gradient-to-r from-[#9b87f5] to-[#D946EF]">
-          Hi there! How can I help you today?
+        <h1 className="text-4xl font-bold text-center mb-8 bg-clip-text text-transparent bg-gradient-to-r from-[#9b87f5] to-[#D946EF] flex items-center justify-center gap-2">
+          <Shield className="w-8 h-8" />
+          Covenant Tracking Agent
         </h1>
         
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {/* Left Column - File Drop Area */}
           <div className="space-y-4">
-            <h2 className="text-2xl font-semibold text-[#7E69AB]">File Upload</h2>
+            <h2 className="text-2xl font-semibold text-[#7E69AB] flex items-center gap-2">
+              <FileText className="text-[#9b87f5]" />
+              File Upload
+            </h2>
             <FileDropbox />
             
             {/* Loan Agreement Summary */}
             <Card className="p-4 bg-background/70 backdrop-blur-sm mt-4">
               <h3 className="text-lg font-semibold mb-3 flex items-center gap-2">
-                <FileText className="text-[#9b87f5]" />
+                <FileCheck className="text-[#9b87f5]" />
                 Loan Agreement Summary
               </h3>
               <ScrollArea className="h-[300px] w-full rounded-md border p-4">
@@ -52,7 +56,10 @@ const Index = () => {
 
           {/* Middle Column - Chat Area */}
           <div className="space-y-4">
-            <h2 className="text-2xl font-semibold text-[#7E69AB]">Chat with Agent</h2>
+            <h2 className="text-2xl font-semibold text-[#7E69AB] flex items-center gap-2">
+              <Database className="text-[#9b87f5]" />
+              Chat with Agent
+            </h2>
             <div className="bg-background/70 backdrop-blur-sm rounded-lg border border-input p-4 min-h-[500px] flex flex-col">
               <div className="flex-1">
                 {/* Chat messages will go here */}
@@ -85,7 +92,10 @@ const Index = () => {
 
           {/* Right Column - Widgets */}
           <div className="space-y-4">
-            <h2 className="text-2xl font-semibold text-[#7E69AB]">Widgets</h2>
+            <h2 className="text-2xl font-semibold text-[#7E69AB] flex items-center gap-2">
+              <ChartBar className="text-[#9b87f5]" />
+              Loan Agreements
+            </h2>
             
             {/* Loan Queue Widget */}
             <Card className="p-4 bg-background/70 backdrop-blur-sm">
